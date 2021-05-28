@@ -16,7 +16,6 @@ namespace ThridPartyDemo
             {
                 Console.WriteLine(disco.Error);
             }
-            var sss = disco.TokenEndpoint;
             var tokenClient = new TokenClient(client, new TokenClientOptions() { 
             ClientId="client",ClientSecret="secret",Address=disco.TokenEndpoint});
 
@@ -31,13 +30,10 @@ namespace ThridPartyDemo
 
             client.SetBearerToken(tokenResponse.AccessToken);
             var res= await client.GetAsync("http://localhost:5009/api/values");
-
-
             if(res.IsSuccessStatusCode)
             {
                 Console.WriteLine(await res.Content.ReadAsStringAsync());
             }
-
             await Task.CompletedTask;
         }
     }
