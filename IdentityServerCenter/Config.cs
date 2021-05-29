@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer4.Models;
+using IdentityServer4.Test;
 
 namespace IdentityServerCenter
 {
@@ -37,8 +38,40 @@ namespace IdentityServerCenter
                         "configs"
                     }
 
+                },
+                new Client()
+                {
+                    ClientId="pwdclient",
+                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets={ new Secret("secret".Sha256())},
+                    AllowedScopes=
+                    {
+                        "configs"
+                    }
                 }
             };
+        }
+
+        /// <summary>
+        /// 替换为数据库读取
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<TestUser> GetTestUser()
+        {
+            return new List<TestUser>() { new TestUser(){
+                SubjectId="1",
+                Username="jesse",
+                Password="123456"
+
+            },
+            new TestUser(){
+                SubjectId="2",
+                Username="admin",
+                Password="123456"
+
+            }
+            };
+
         }
 
 

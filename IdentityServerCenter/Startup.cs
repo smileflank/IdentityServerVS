@@ -28,6 +28,7 @@ namespace IdentityServerCenter
             services.AddIdentityServer().AddDeveloperSigningCredential()
             .AddInMemoryApiResources(Config.GetResource())
             .AddInMemoryClients(Config.GetClients())
+            .AddTestUsers(Config.GetTestUser().ToList())
             .AddInMemoryApiScopes(Config.ApiScopes);
             services.AddControllers();
             services.AddSwaggerGen(c =>
